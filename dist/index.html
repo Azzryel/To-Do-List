@@ -7,7 +7,41 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css">
    </head>
    <body>
+     
+     <div id="left-container">
+          <p id="projects-para">Projects</p>
+          <div id="project-list"> </div>
+          
+          <div id="project-form">
+               <input id="project-title" type="text" name="title" placeholder="Name of the project" maxlength="41">
+               <input id="input-btn" type="submit" value=" + ">
+          </div>
+     </div>
+     
+     <div id="right-container">
 
-    <script src="main.js"></script>
+          <div id="project-title-header"> </div>
+
+          <p id="p">Tasks </p> 
+          <div id="to-do-list">
+ 
+          </div>
+     </div>
+
+     <div id="to-do-form">
+          <input id="to-do-title" type="text" name="title" placeholder="Name of the task" maxlength="21">
+          <br>
+          High priority?<input type="checkbox" id="checkbox" name="priority" value="highPriority">
+          <br>
+          <input id="addToDo-btn" type="submit" value=" + ">
+          <button id="cancel-btn">Cancel</button>
+     </div>
+
+     <div id="footer">
+          <p id="to-do"> To Do </p>
+     </div>
+
+
+    <script src="main.js"></script> 
    </body>
   </html>
