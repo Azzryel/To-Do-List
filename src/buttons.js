@@ -31,7 +31,14 @@ const buttons = ( () => {
         });
     }
 
-    return { checkbox, removeBtn }
+    const form = () => {
+        const formBtn = document.getElementById("display-form");
+        formBtn.addEventListener("click", () => {
+            document.getElementById("to-do-form").style.display = "block";
+    });
+    }
+
+    return { checkbox, removeBtn, form }
 })();
 
 export { buttons }

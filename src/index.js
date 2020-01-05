@@ -4,9 +4,9 @@ import { createTemplate } from "./createTemplate"
 import { display } from "./display"
 import { buttons } from "./buttons" 
 
-let test = toDoFactory ("title", "descr", "date", "priority");
-let test1 = toDoFactory ("name", "descr", "date", "priority");
-let test2 = toDoFactory ("2", "2", "2", "2");
+let test = toDoFactory ("title", "", "false");
+let test1 = toDoFactory ("name", "", "false");
+let test2 = toDoFactory ("2", "", "true");
 
 let proTest = projectFactory ("Title");
 proTest.addToDo(test);
@@ -43,6 +43,7 @@ projectAddBtn.addEventListener("click", () => {
 
         buttons.removeBtn(place);
         buttons.checkbox(place);
+        buttons.form();
     });
 });
 
@@ -52,9 +53,10 @@ let placeNumber = 0;
 const toDoAddBtn = document.querySelector("#addToDo-btn");
 toDoAddBtn.addEventListener("click", () => {
     let title = document.getElementById("to-do-title").value;
+    let toDoDate = document.getElementById("to-do-date").value;
     let priority = document.getElementById("priority-checkbox").checked;
 
-    let toDo = toDoFactory(`${title}`, 0, `${priority}`);
+    let toDo = toDoFactory(`${title}`, `${toDoDate}`, `${priority}`);
     let toDoPlace = projectCollection[placeNumber].toDoTasks.length
 
     projectCollection[placeNumber].addToDo(toDo);
@@ -75,6 +77,12 @@ projectsList.forEach( (project) => {
 
         buttons.removeBtn(place);
         buttons.checkbox(place);
+        buttons.form();
 
     });
+});
+
+const cancelFormBtn = document.querySelector("#cancel-btn");
+cancelFormBtn.addEventListener("click", () => {
+    document.getElementById("to-do-form").style.display = "none";
 });

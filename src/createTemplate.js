@@ -1,6 +1,8 @@
 import { projectCollection } from "./projectFactory";
+//import getDate from `date-fns/get_date`;
 
 const createTemplate = ( () => {
+
 
     const projectTemplate = (e, place) => {
         const projectList = document.querySelector("#project-list");
@@ -16,6 +18,7 @@ const createTemplate = ( () => {
     }
 
     const toDoTemplate = (e, toDoPlace) => {
+
         const toDoList = document.querySelector("#to-do-list");
         const toDoContent = document.createElement("div");
         toDoContent.className = "to-do-content";
@@ -27,6 +30,9 @@ const createTemplate = ( () => {
         const span = document.createElement("span");
         span.setAttribute("data-todoplace", `${toDoPlace}`);
         span.textContent = `${e.title}`;
+        const toDoDate = document.createElement("span");
+        toDoDate.setAttribute("data-todoplace", `${toDoPlace}`);
+        toDoDate.textContent = `${e.dueDate}`;
         const priority = document.createElement("div");
         priority.setAttribute("data-todoplace", `${toDoPlace}`);
         priority.textContent = "!";
@@ -40,6 +46,7 @@ const createTemplate = ( () => {
         toDoList.appendChild(toDoContent);
         toDoContent.appendChild(toDoCheck);
         toDoContent.appendChild(span);
+        toDoContent.appendChild(toDoDate);
 
         if (e.priority == "true") {
             priority.classList.add("priority-high");
@@ -58,11 +65,15 @@ const createTemplate = ( () => {
         projectRemove.id = `remove-project-${place}`;
         projectRemove.setAttribute("data-remove", `${place}`);
         projectRemove.textContent = "Remove project";
+        const addTask =document.createElement("button");
+        addTask.id = "display-form";
+        addTask.textContent = "Add tasks";
 
 
         projectTitle.appendChild(projectHeader);
         projectHeader.appendChild(titleH2);
         projectHeader.appendChild(projectRemove);
+        projectHeader.appendChild(addTask);
     }
 
     const projectDefaultHeader = () => {
