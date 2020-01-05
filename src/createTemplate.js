@@ -27,6 +27,10 @@ const createTemplate = ( () => {
         const span = document.createElement("span");
         span.setAttribute("data-todoplace", `${toDoPlace}`);
         span.textContent = `${e.title}`;
+        const priority = document.createElement("div");
+        priority.setAttribute("data-todoplace", `${toDoPlace}`);
+        priority.textContent = "!";
+
         
         if (e.checkValue == "true") {
             span.classList.add("checked");
@@ -36,6 +40,11 @@ const createTemplate = ( () => {
         toDoList.appendChild(toDoContent);
         toDoContent.appendChild(toDoCheck);
         toDoContent.appendChild(span);
+
+        if (e.priority == "true") {
+            priority.classList.add("priority-high");
+            toDoContent.appendChild(priority);
+        }
     }
 
     const projectTitleHeader = (place) => {

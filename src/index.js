@@ -22,7 +22,6 @@ console.log(proTest)
 console.log(proTest.toDoTasks)
 console.log(projectCollection)
 display.render();
-display.renderToDo(0);
 display.renderDefaultHeader();
 
 const projectAddBtn = document.querySelector("#input-btn");
@@ -53,7 +52,9 @@ let placeNumber = 0;
 const toDoAddBtn = document.querySelector("#addToDo-btn");
 toDoAddBtn.addEventListener("click", () => {
     let title = document.getElementById("to-do-title").value;
-    let toDo = toDoFactory(`${title}`);
+    let priority = document.getElementById("priority-checkbox").checked;
+
+    let toDo = toDoFactory(`${title}`, 0, `${priority}`);
     let toDoPlace = projectCollection[placeNumber].toDoTasks.length
 
     projectCollection[placeNumber].addToDo(toDo);
