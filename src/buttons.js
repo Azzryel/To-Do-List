@@ -14,15 +14,18 @@ const buttons = ( () => {
         });
     }
     
-    const checkbox = () => {
+    const checkbox = (projectPlace) => {
         const checkbox = document.querySelectorAll(".checkbox");
         checkbox.forEach( (check) => {
             check.addEventListener("change", (e) => {
+                const check = e.target.getAttribute("data-todoplace");
                 if (e.target.checked) {
                     e.target.nextSibling.classList.add("checked");
+                    projectCollection[projectPlace].toDoTasks[check].checkValue = "true";
                 }
                 else if (!e.target.checked) {
                     e.target.nextSibling.classList.remove("checked");
+                    projectCollection[projectPlace].toDoTasks[check].checkValue = "false";
                 }
             });
         });

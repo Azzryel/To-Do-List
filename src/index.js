@@ -43,7 +43,7 @@ projectAddBtn.addEventListener("click", () => {
         display.renderToDo(place);
 
         buttons.removeBtn(place);
-        buttons.checkbox();
+        buttons.checkbox(place);
     });
 });
 
@@ -54,11 +54,12 @@ const toDoAddBtn = document.querySelector("#addToDo-btn");
 toDoAddBtn.addEventListener("click", () => {
     let title = document.getElementById("to-do-title").value;
     let toDo = toDoFactory(`${title}`);
+    let toDoPlace = projectCollection[placeNumber].toDoTasks.length
 
     projectCollection[placeNumber].addToDo(toDo);
-    display.renderLastToDo(toDo);
+    display.renderLastToDo(toDo, toDoPlace);
 
-    buttons.checkbox();
+    buttons.checkbox(placeNumber);
 });
 
 const projectsList = document.querySelectorAll(".projects");
@@ -72,7 +73,7 @@ projectsList.forEach( (project) => {
         
 
         buttons.removeBtn(place);
-        buttons.checkbox();
+        buttons.checkbox(place);
 
     });
 });

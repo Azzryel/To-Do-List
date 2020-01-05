@@ -15,8 +15,10 @@ const display = ( () => {
     }
 
     const renderToDo = (place) => {
+        let toDoPlace = 0;
         projectCollection[place].toDoTasks.forEach( (e) => {
-            createTemplate.toDoTemplate(e);
+            createTemplate.toDoTemplate(e, toDoPlace);
+            toDoPlace++;
         })
     }
 
@@ -24,8 +26,8 @@ const display = ( () => {
         createTemplate.projectTemplate(project, place);
     }
 
-    const renderLastToDo = (toDo) => {
-        createTemplate.toDoTemplate(toDo)
+    const renderLastToDo = (toDo, toDoPlace) => {
+        createTemplate.toDoTemplate(toDo, toDoPlace)
     }
 
     const remove = () => {
@@ -39,7 +41,6 @@ const display = ( () => {
     }
 
     const removeProject = (place) => {
-        console.log("hi")
         const element = document.querySelector(`[data-place = "${place}"]`);
         element.parentNode.removeChild(element);
     }
