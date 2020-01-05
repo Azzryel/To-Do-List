@@ -2,6 +2,7 @@ import { toDoFactory } from "./toDoFactory"
 import { projectFactory, projectCollection } from "./projectFactory"
 import { createTemplate } from "./createTemplate"
 import { display } from "./display"
+import { buttons } from "./buttons" 
 
 let test = toDoFactory ("title", "descr", "date", "priority");
 let test1 = toDoFactory ("name", "descr", "date", "priority");
@@ -41,16 +42,8 @@ projectAddBtn.addEventListener("click", () => {
         display.renderProjectHeader(place);
         display.renderToDo(place);
 
-        const removeBtn = document.querySelector(`#remove-project-${place}`);
-        removeBtn.addEventListener("click", (e) => {
-            const number = e.target.getAttribute("data-remove");
-            console.log(number)
-            delete projectCollection[number];
-            display.removeProject(number);
-            display.remove();
-            display.renderDefaultHeader();
-            console.log(placeNumber)
-        });
+        buttons.removeBtn(place);
+        buttons.checkbox();
     });
 });
 
@@ -61,10 +54,11 @@ const toDoAddBtn = document.querySelector("#addToDo-btn");
 toDoAddBtn.addEventListener("click", () => {
     let title = document.getElementById("to-do-title").value;
     let toDo = toDoFactory(`${title}`);
-    console.log(placeNumber)
 
     projectCollection[placeNumber].addToDo(toDo);
     display.renderLastToDo(toDo);
+
+    buttons.checkbox();
 });
 
 const projectsList = document.querySelectorAll(".projects");
@@ -76,38 +70,9 @@ projectsList.forEach( (project) => {
         display.renderProjectHeader(place);
         display.renderToDo(place);
         
-        const removeBtn = document.querySelector(`#remove-project-${place}`);
-        removeBtn.addEventListener("click", (e) => {
-            const number = e.target.getAttribute("data-remove");
-            console.log(number)
-            delete projectCollection[number];
-            display.removeProject(number);
-            display.remove();
-            display.renderDefaultHeader();
-            console.log(placeNumber)
-        });
 
-        const checkbox = document.querySelectorAll(".checkbox");
-        checkbox.forEach( (check) => {
-            check.addEventListener("change", (e) => {
-                console.log("check")
-                alert(`${e.target.checked}`)
-                if (e.target.checked) alert("Aloha")
-            });
-        });
+        buttons.removeBtn(place);
+        buttons.checkbox();
+
     });
 });
-
-const checkbox = document.querySelectorAll(".checkbox");
-        checkbox.forEach( (check) => {
-            check.addEventListener("change", (e) => {
-                console.log("check2")
-                alert(`${e.target.checked}`)
-                if (e.target.checked) alert("Aloha2")
-            });
-        });
-
-const checking = document.querySelector("#checkbox");
-    checking.addEventListener("change", () =>{
-            alert("hi")
-        });
