@@ -31,27 +31,31 @@ const createTemplate = ( () => {
         span.setAttribute("data-todoplace", `${toDoPlace}`);
         span.textContent = `${e.title}`;
         const toDoDate = document.createElement("span");
+        toDoDate.className = "to-do-date";
         toDoDate.setAttribute("data-todoplace", `${toDoPlace}`);
         toDoDate.textContent = `${e.dueDate}`;
         const priority = document.createElement("div");
+        priority.className = "priority";
         priority.setAttribute("data-todoplace", `${toDoPlace}`);
         priority.textContent = "!";
 
         
         if (e.checkValue == "true") {
             span.classList.add("checked");
-            toDoCheck.checked = true;   
+            toDoCheck.checked = true;
+            priority.classList.add("grey"); 
+            toDoDate.classList.add("checked");  
         }
         
         toDoList.appendChild(toDoContent);
         toDoContent.appendChild(toDoCheck);
         toDoContent.appendChild(span);
-        toDoContent.appendChild(toDoDate);
 
         if (e.priority == "true") {
             priority.classList.add("priority-high");
             toDoContent.appendChild(priority);
         }
+        toDoContent.appendChild(toDoDate);
     }
 
     const projectTitleHeader = (place) => {
@@ -81,10 +85,19 @@ const createTemplate = ( () => {
         const projectHeader = document.createElement("div");
         projectHeader.id = "header-title";
         const titleSpan = document.createElement("span");
-        titleSpan.textContent = `Default Poject Title`;
+        titleSpan.textContent = `Default`;
 
         projectTitle.appendChild(projectHeader);
         projectHeader.appendChild(titleSpan);
+
+        const toDoList = document.querySelector("#to-do-list");
+        const toDoContent = document.createElement("div");
+        toDoContent.className = "to-do-content";
+        const para1 = document.createElement("p");
+        para1.textContent = "Pick or create a project";
+
+        toDoList.appendChild(toDoContent);
+        toDoContent.appendChild(para1);
     }
 
     return { projectTemplate, toDoTemplate, projectTitleHeader , projectDefaultHeader }

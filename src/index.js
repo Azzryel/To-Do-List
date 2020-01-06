@@ -3,6 +3,7 @@ import { projectFactory, projectCollection } from "./projectFactory"
 import { createTemplate } from "./createTemplate"
 import { display } from "./display"
 import { buttons } from "./buttons" 
+import { validate } from "./validate"
 
 let test = toDoFactory ("title", "", "false");
 let test1 = toDoFactory ("name", "", "false");
@@ -27,10 +28,15 @@ display.renderDefaultHeader();
 const projectAddBtn = document.querySelector("#input-btn");
 projectAddBtn.addEventListener("click", () => {
     let title = document.getElementById("project-title").value;
+
+    if (title.trim() == "") return false;
+
     let project = projectFactory(`${title}`);
     let place = projectCollection.length;
     projectCollection.push(project);
     display.renderLastProject(project, place);
+
+    document.getElementById("project-title").value = "";
 
     const projectsList = document.querySelectorAll(".projects");
     projectsList.forEach( (project) => {
@@ -45,8 +51,15 @@ projectAddBtn.addEventListener("click", () => {
         buttons.checkbox(place);
         buttons.form();
     });
-});
 
+    project.addEventListener("mouseenter", (e) => {
+        e.target.classList.add("project-hover");
+    });
+
+    project.addEventListener("mouseleave", (e) => {
+        e.target.classList.remove("project-hover");
+    });
+});
 });
 
 let placeNumber = 0;
@@ -56,6 +69,8 @@ toDoAddBtn.addEventListener("click", () => {
     let toDoDate = document.getElementById("to-do-date").value;
     let priority = document.getElementById("priority-checkbox").checked;
 
+    if (title.trim() == "") return false;
+
     let toDo = toDoFactory(`${title}`, `${toDoDate}`, `${priority}`);
     let toDoPlace = projectCollection[placeNumber].toDoTasks.length
 
@@ -63,6 +78,10 @@ toDoAddBtn.addEventListener("click", () => {
     display.renderLastToDo(toDo, toDoPlace);
 
     buttons.checkbox(placeNumber);
+
+    document.getElementById("to-do-title").value = "";
+    document.getElementById("to-do-date").value = "";
+    document.getElementById("priority-checkbox").checked = false;
 });
 
 const projectsList = document.querySelectorAll(".projects");
@@ -78,7 +97,14 @@ projectsList.forEach( (project) => {
         buttons.removeBtn(place);
         buttons.checkbox(place);
         buttons.form();
+    });
 
+    project.addEventListener("mouseenter", (e) => {
+        e.target.classList.add("project-hover");
+    });
+
+    project.addEventListener("mouseleave", (e) => {
+        e.target.classList.remove("project-hover");
     });
 });
 

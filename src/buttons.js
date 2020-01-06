@@ -11,6 +11,7 @@ const buttons = ( () => {
             display.removeProject(number);
             display.remove();
             display.renderDefaultHeader();
+            document.getElementById("to-do-form").style.display = "none";
         });
     }
     
@@ -21,11 +22,20 @@ const buttons = ( () => {
                 const check = e.target.getAttribute("data-todoplace");
                 if (e.target.checked) {
                     e.target.nextSibling.classList.add("checked");
+                    e.target.parentNode.lastChild.classList.add("checked");
                     projectCollection[projectPlace].toDoTasks[check].checkValue = "true";
+                    if (e.target.parentNode.lastChild.previousSibling.className == "priority priority-high"){
+                    e.target.parentNode.lastChild.previousSibling.classList.add("grey");
+                    }
                 }
                 else if (!e.target.checked) {
                     e.target.nextSibling.classList.remove("checked");
+                    e.target.parentNode.lastChild.classList.remove("checked");
                     projectCollection[projectPlace].toDoTasks[check].checkValue = "false";
+                    if (e.target.parentNode.lastChild.previousSibling.className == "priority priority-high grey"
+                        || e.target.parentNode.lastChild.previousSibling.className == "priority grey priority-high"){
+                        e.target.parentNode.lastChild.previousSibling.classList.remove("grey");
+                        }
                 }
             });
         });
