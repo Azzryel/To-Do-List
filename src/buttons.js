@@ -1,5 +1,6 @@
 import { projectCollection } from "./projectFactory"
 import { display } from "./display"
+import { storageAvailable } from "./storageAvailable"
 
 const buttons = ( () => {
 
@@ -8,6 +9,7 @@ const buttons = ( () => {
         removeBtn.addEventListener("click", (e) => {
             const number = e.target.getAttribute("data-remove");
             delete projectCollection[number];
+
             display.removeProject(number);
             display.remove();
             display.renderDefaultHeader();

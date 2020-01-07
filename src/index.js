@@ -3,25 +3,23 @@ import { projectFactory, projectCollection } from "./projectFactory"
 import { createTemplate } from "./createTemplate"
 import { display } from "./display"
 import { buttons } from "./buttons" 
-import { validate } from "./validate"
+import { storageAvailable } from "./storageAvailable"
 
-let test = toDoFactory ("title", "", "false");
-let test1 = toDoFactory ("name", "", "false");
-let test2 = toDoFactory ("2", "", "true");
 
-let proTest = projectFactory ("Title");
+//default tasks and projects
+let test = toDoFactory ("Default", "01.01.2020", "false");
+let test1 = toDoFactory ("Default2", "", "true");
+let test2 = toDoFactory ("Default3", "01.01.2020", "true");
+
+let proTest = projectFactory ("Default");
 proTest.addToDo(test);
 proTest.addToDo(test1);
-let proTest2 = projectFactory ("HuaHua");
+let proTest2 = projectFactory ("Default2");
 proTest2.addToDo(test2);
 
 projectCollection.push(proTest)
-projectCollection.push(proTest2)
-console.log(test)
-console.log("Test5")
-console.log(proTest)
-console.log(proTest.toDoTasks)
-console.log(projectCollection)
+//projectCollection.push(proTest2)
+//end of default
 display.render();
 display.renderDefaultHeader();
 
@@ -60,6 +58,7 @@ projectAddBtn.addEventListener("click", () => {
         e.target.classList.remove("project-hover");
     });
 });
+
 });
 
 let placeNumber = 0;
@@ -76,6 +75,7 @@ toDoAddBtn.addEventListener("click", () => {
 
     projectCollection[placeNumber].addToDo(toDo);
     display.renderLastToDo(toDo, toDoPlace);
+
 
     buttons.checkbox(placeNumber);
 

@@ -8,6 +8,6 @@ const projectFactory = (title) => {
     return { title, addToDo, toDoTasks };
 };
 
-const projectCollection = [];
+let projectCollection = [];
 
 export { projectFactory, projectCollection }
